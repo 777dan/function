@@ -1,5 +1,4 @@
 "use strict"
-let expr = prompt("Input expression");
 function printTable(from, to, step, func) {
     if (func === undefined) {
         return;
@@ -17,11 +16,20 @@ function printTable(from, to, step, func) {
     document.write("</table>");
 }
 
-//with eval
-// let f;
-// eval('f = function (x) {return ' + expr + ';}');
+function callbackTables() {
+    let from = +prompt("Input 'from'");
+    let to = +prompt("Input 'to'");
+    let step = +prompt("Input step");
+    let expr = prompt("Input expression in the form 'x*x'");
 
-//with Function
-let f = new Function("x", "return " + expr);
+    //with Function
+    // let f = new Function("x", "return " + expr);
 
-printTable(0, 10, 1, f);
+    //with eval
+    let f;
+    eval('f = function (x) {return ' + expr + ';}');
+
+    printTable(from, to, step, f);
+}
+
+callbackTables();
